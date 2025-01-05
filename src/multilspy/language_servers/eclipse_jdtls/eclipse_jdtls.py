@@ -119,7 +119,7 @@ class EclipseJDTLS(LanguageServer):
                 "-Dsun.zip.disableMemoryMapping=true",
                 "-Djava.lsp.joinOnCompletion=true",
                 "-Xmx3G",
-                "-Xms100m",
+                "-Xms512m",
                 "-Xlog:disable",
                 "-Dlog.level=ALL",
                 f"-javaagent:{lombok_jar_path}",

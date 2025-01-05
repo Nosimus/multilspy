@@ -16,6 +16,7 @@ class Language(str, Enum):
     JAVA = "java"
     TYPESCRIPT = "typescript"
     JAVASCRIPT = "javascript"
+    PHP = "php"
 
     def __str__(self) -> str:
         return self.value
