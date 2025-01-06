@@ -220,7 +220,7 @@
                 "linkSupport": true
             },
             "references": {
-                "dynamicRegistration": true
+                "dynamicRegistration": false
             },
             "documentHighlight": {
                 "dynamicRegistration": true
