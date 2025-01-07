@@ -112,6 +112,7 @@ class EclipseJDTLS(LanguageServer):
                 "-Declipse.product=org.eclipse.jdt.ls.core.product",
                 "-Djava.import.generatesMetadataFilesAtProjectRoot=false",
                 "-Dfile.encoding=utf8",
+                "-clean",
                 "-noverify",
                 "-XX:+UseParallelGC",
                 "-XX:GCTimeRatio=4",
@@ -244,7 +245,7 @@ class EclipseJDTLS(LanguageServer):
         Returns the initialize parameters for the EclipseJDTLS server.
         """
         # Look into https://github.com/eclipse/eclipse.jdt.ls/blob/master/org.eclipse.jdt.ls.core/src/org/eclipse/jdt/ls/core/internal/preferences/Preferences.java to understand all the options available
-        with open(str(PurePath(os.path.dirname(__file__), "initialize_params2.json")), "r") as f:
+        with open(str(PurePath(os.path.dirname(__file__), "initialize_params.json")), "r") as f:
             d: InitializeParams = json.load(f)
 
         del d["_description"]
