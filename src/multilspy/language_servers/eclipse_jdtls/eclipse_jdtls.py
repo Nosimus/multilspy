@@ -112,7 +112,6 @@ class EclipseJDTLS(LanguageServer):
                 "-Declipse.product=org.eclipse.jdt.ls.core.product",
                 "-Djava.import.generatesMetadataFilesAtProjectRoot=false",
                 "-Dfile.encoding=utf8",
-                "-clean",
                 "-noverify",
                 "-XX:+UseParallelGC",
                 "-XX:GCTimeRatio=4",
