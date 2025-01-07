@@ -521,14 +521,14 @@
                 },
                 "import": {
                     "maven": {
-                        "enabled": true,
+                        "enabled": false,
                         "offline": {
                             "enabled": false
                         },
                         "disableTestClasspathFlag": false
                     },
                     "gradle": {
-                        "enabled": true,
+                        "enabled": false,
                         "wrapper": {
                             "enabled": true
                         },
@@ -559,8 +559,8 @@
                     "generatesMetadataFilesAtProjectRoot": false
                 },
                 "maven": {
-                    "downloadSources": true,
-                    "updateSnapshots": true
+                    "downloadSources": false,
+                    "updateSnapshots": false
                 },
                 "eclipse": {
                     "downloadSources": true
@@ -845,6 +845,5 @@
         },
         "triggerFiles": []
     },
-    "trace": "verbose",
     "workspaceFolders": "[\n            {\n                \"uri\": pathlib.Path(repository_absolute_path).as_uri(),\n                \"name\": os.path.basename(repository_absolute_path),\n            }\n        ]"
 }
