@@ -710,7 +710,7 @@
                 },
                 "references": {
                     "includeAccessors": true,
-                    "includeDecompiledSources": true
+                    "includeDecompiledSources": false
                 },
                 "typeHierarchy": {
                     "lazyLoad": false
