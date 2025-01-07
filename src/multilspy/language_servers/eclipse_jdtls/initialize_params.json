@@ -727,7 +727,7 @@
                 "inlayHints": {
                     "parameterNames": {
                         "enabled": "literals",
-                        "exclusions": ["**/.git/**"]
+                        "exclusions": []
                     }
                 },
                 "codeAction": {
