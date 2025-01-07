@@ -553,7 +553,8 @@
                         "**/node_modules/**",
                         "**/.metadata/**",
                         "**/archetype-resources/**",
-                        "**/META-INF/maven/**"
+                        "**/META-INF/maven/**",
+                        "**/.git/**"
                     ],
                     "generatesMetadataFilesAtProjectRoot": false
                 },
@@ -726,7 +727,7 @@
                 "inlayHints": {
                     "parameterNames": {
                         "enabled": "literals",
-                        "exclusions": []
+                        "exclusions": ["**/.git/**"]
                     }
                 },
                 "codeAction": {
