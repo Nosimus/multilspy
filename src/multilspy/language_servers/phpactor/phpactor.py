@@ -103,12 +103,10 @@ class PhpActorAnalyzer(LanguageServer):
             init_response = await self.server.send.initialize(initialize_params)
             assert init_response["capabilities"]["textDocumentSync"] == 1
             assert "completionProvider" in init_response["capabilities"]
-            time.sleep(2.0)
-            # assert os.path.exists('/')
             self.server.notify.initialized({})
             self.completions_available.set()
 
             yield self
 
-            await self.server.process.kill()
+            await self.server.shutdown()
             await self.server.stop()
