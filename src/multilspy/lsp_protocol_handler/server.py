@@ -203,6 +203,7 @@ class LanguageServerHandler:
         """
         child_proc_env = os.environ.copy()
         child_proc_env.update(self.process_launch_info.env)
+        print(f'Process cmd: {self.process_launch_info.cmd}')
         self.process = await asyncio.create_subprocess_shell(
             self.process_launch_info.cmd,
             stdout=asyncio.subprocess.PIPE,
