@@ -35,6 +35,8 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Union
 
+import psutil
+
 from .lsp_requests import LspNotification, LspRequest
 from .lsp_types import ErrorCodes
 
@@ -219,6 +221,9 @@ class LanguageServerHandler:
         self.task_counter += 1
         self.tasks[self.task_counter] = self.loop.create_task(self.run_forever_stderr())
         self.task_counter += 1
+
+        if not psutil.pid_exists(self.process.pid):
+            raise RuntimeError("Process did not start for some reason")
 
     async def stop(self) -> None:
         """
