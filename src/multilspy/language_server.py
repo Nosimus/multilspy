@@ -158,8 +158,8 @@ class LanguageServer:
         self.language_id = language_id
         self.open_file_buffers: Dict[str, LSPFileBuffer] = {}
 
-    def stop(self):
-        self.server.stop()
+    async def stop(self) -> None:
+        await self.server.stop()
 
     @property
     def last_stdout_at(self) -> Optional[datetime]:
