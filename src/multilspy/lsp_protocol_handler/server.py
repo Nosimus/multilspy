@@ -37,6 +37,7 @@ from typing import Any, Dict, List, Optional, Union
 
 import psutil
 
+from multilspy_exceptions import MultilspyException
 from .lsp_requests import LspNotification, LspRequest
 from .lsp_types import ErrorCodes
 
@@ -223,7 +224,7 @@ class LanguageServerHandler:
         self.task_counter += 1
 
         if not psutil.pid_exists(self.process.pid):
-            raise RuntimeError("Process did not start for some reason")
+            raise MultilspyException("Server process did not start for some reason")
 
     async def stop(self) -> None:
         """
