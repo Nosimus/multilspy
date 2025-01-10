@@ -37,7 +37,7 @@ from typing import Any, Dict, List, Optional, Union
 
 import psutil
 
-from multilspy_exceptions import MultilspyException
+from multilspy.multilspy_exceptions import MultilspyException
 from .lsp_requests import LspNotification, LspRequest
 from .lsp_types import ErrorCodes
 
