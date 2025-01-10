@@ -693,6 +693,12 @@ class SyncLanguageServer:
         with self.language_server.open_file(relative_file_path):
             yield
 
+    def stop(self) -> None:
+        result = asyncio.run_coroutine_threadsafe(
+            self.language_server.stop(), self.loop
+        ).result()
+        return result
+
     def insert_text_at_position(
         self, relative_file_path: str, line: int, column: int, text_to_be_inserted: str
     ) -> multilspy_types.Position:
