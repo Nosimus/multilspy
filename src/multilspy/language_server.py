@@ -14,6 +14,9 @@ import os
 import pathlib
 import threading
 from contextlib import asynccontextmanager, contextmanager
+from datetime import datetime
+from multiprocessing import Process
+
 from .lsp_protocol_handler.lsp_constants import LSPConstants
 from  .lsp_protocol_handler import lsp_types as LSPTypes
 
@@ -27,7 +30,7 @@ from .multilspy_config import MultilspyConfig, Language
 from .multilspy_exceptions import MultilspyException
 from .multilspy_utils import PathUtils, FileUtils, TextUtils
 from pathlib import PurePath
-from typing import AsyncIterator, Iterator, List, Dict, Union, Tuple
+from typing import AsyncIterator, Iterator, List, Dict, Union, Tuple, Optional
 from .type_helpers import ensure_all_methods_implemented
 
 
@@ -154,6 +157,13 @@ class LanguageServer:
 
         self.language_id = language_id
         self.open_file_buffers: Dict[str, LSPFileBuffer] = {}
+
+    def stop(self):
+        self.server.stop()
+
+    @property
+    def last_stdout_at(self) -> Optional[datetime]:
+        return self.server.last_stdout_at
 
     @asynccontextmanager
     async def start_server(self) -> AsyncIterator["LanguageServer"]:

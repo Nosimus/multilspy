@@ -30,6 +30,7 @@ SOFTWARE.
 
 import asyncio
 import dataclasses
+import datetime
 import json
 import os
 from typing import Any, Dict, List, Optional, Union
@@ -195,6 +196,7 @@ class LanguageServerHandler:
         self.tasks = {}
         self.task_counter = 0
         self.loop = None
+        self.last_stdout_at = None
 
     async def start(self) -> None:
         """
@@ -203,7 +205,6 @@ class LanguageServerHandler:
         """
         child_proc_env = os.environ.copy()
         child_proc_env.update(self.process_launch_info.env)
-        print(f'Process cmd: {self.process_launch_info.cmd}')
         self.process = await asyncio.create_subprocess_shell(
             self.process_launch_info.cmd,
             stdout=asyncio.subprocess.PIPE,
@@ -270,6 +271,7 @@ class LanguageServerHandler:
         try:
             while self.process and self.process.stdout and not self.process.stdout.at_eof():
                 line = await self.process.stdout.readline()
+                self.last_stdout_at = datetime.datetime.now(datetime.UTC)
                 if not line:
                     continue
                 try:
@@ -297,6 +299,7 @@ class LanguageServerHandler:
         try:
             while self.process and self.process.stderr and not self.process.stderr.at_eof():
                 line = await self.process.stderr.readline()
+                self.last_stdout_at = datetime.datetime.now(datetime.UTC)
                 if not line:
                     continue
                 self._log("LSP stderr: " + line.decode(ENCODING))
