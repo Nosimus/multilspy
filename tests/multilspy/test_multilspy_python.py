@@ -19,7 +19,9 @@ async def test_multilspy_python_black():
     params = {
         "code_language": code_language,
         "repo_url": "https://github.com/psf/black/",
-        "repo_commit": "f3b50e466969f9142393ec32a4b2a383ffbe5f23"
+        "repo_commit": "f3b50e466969f9142393ec32a4b2a383ffbe5f23",
+        "static_root": "/tmp/multilspy",
+        "language_server_dir": "/tmp/multilspy"
     }
     with create_test_context(params) as context:
         lsp = LanguageServer.create(context.config, context.logger, context.source_directory)

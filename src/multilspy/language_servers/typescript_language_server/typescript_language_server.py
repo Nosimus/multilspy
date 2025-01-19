@@ -62,7 +62,7 @@ class TypeScriptLanguageServer(LanguageServer):
             del d["_description"]
 
         runtime_dependencies = d.get("runtimeDependencies", [])
-        tsserver_ls_dir = os.path.join(os.path.dirname(__file__), "static", "ts-lsp")
+        tsserver_ls_dir = os.path.join(config.static_root, "static", "ts-lsp")
         tsserver_executable_path = os.path.join(tsserver_ls_dir, "typescript-language-server")
 
         # Verify both node and npm are installed

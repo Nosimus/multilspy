@@ -15,7 +15,9 @@ def test_multilspy_java_clickhouse_highlevel_sinker() -> None:
     params = {
         "code_language": code_language,
         "repo_url": "https://github.com/Index103000/clickhouse-highlevel-sinker/",
-        "repo_commit": "ee31d278918fe5e64669a6840c4d8fb53889e573"
+        "repo_commit": "ee31d278918fe5e64669a6840c4d8fb53889e573",
+        "static_root": "/tmp/multilspy",
+        "language_server_dir": "/tmp/multilspy"
     }
     with create_test_context(params) as context:
         lsp = SyncLanguageServer.create(context.config, context.logger, context.source_directory)

@@ -58,7 +58,7 @@ class EclipseJDTLS(LanguageServer):
         # ws_dir is the workspace directory for the EclipseJDTLS server
         ws_dir = str(
             PurePath(
-                MultilspySettings.get_language_server_directory(),
+                MultilspySettings.get_language_server_directory(home=config.language_server_dir),
                 "EclipseJDTLS",
                 "workspaces",
                 uuid.uuid4().hex,
@@ -67,7 +67,7 @@ class EclipseJDTLS(LanguageServer):
 
         # shared_cache_location is the global cache used by Eclipse JDTLS across all workspaces
         shared_cache_location = str(
-            PurePath(MultilspySettings.get_global_cache_directory(), "lsp", "EclipseJDTLS", "sharedIndex")
+            PurePath(MultilspySettings.get_global_cache_directory(config.language_server_dir), "lsp", "EclipseJDTLS", "sharedIndex")
         )
 
         jre_path = self.runtime_dependency_paths.jre_path
@@ -149,7 +149,7 @@ class EclipseJDTLS(LanguageServer):
             runtimeDependencies = json.load(f)
             del runtimeDependencies["_description"]
 
-        os.makedirs(str(PurePath(os.path.abspath(os.path.dirname(__file__)), "static")), exist_ok=True)
+        os.makedirs(os.path.join(config.static_root, "static"), exist_ok=True)
 
         # assert platformId.value in [
         #     "linux-x64",
@@ -158,7 +158,7 @@ class EclipseJDTLS(LanguageServer):
 
         gradle_path = str(
             PurePath(
-                os.path.abspath(os.path.dirname(__file__)),
+                config.static_root,
                 "static/gradle-7.3.3",
             )
         )
@@ -175,7 +175,7 @@ class EclipseJDTLS(LanguageServer):
 
         dependency = runtimeDependencies["vscode-java"][platformId.value]
         vscode_java_path = str(
-            PurePath(os.path.abspath(os.path.dirname(__file__)), "static", dependency["relative_extraction_path"])
+            PurePath(config.static_root, "static", dependency["relative_extraction_path"])
         )
         os.makedirs(vscode_java_path, exist_ok=True)
         jre_home_path = str(PurePath(vscode_java_path, dependency["jre_home_path"]))
@@ -208,7 +208,7 @@ class EclipseJDTLS(LanguageServer):
 
         dependency = runtimeDependencies["intellicode"]["platform-agnostic"]
         intellicode_directory_path = str(
-            PurePath(os.path.abspath(os.path.dirname(__file__)), "static", dependency["relative_extraction_path"])
+            PurePath(config.static_root, "static", dependency["relative_extraction_path"])
         )
         os.makedirs(intellicode_directory_path, exist_ok=True)
         intellicode_jar_path = str(PurePath(intellicode_directory_path, dependency["intellicode_jar_path"]))

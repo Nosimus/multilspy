@@ -61,7 +61,7 @@ class RustAnalyzer(LanguageServer):
         assert len(runtime_dependencies) == 1
         dependency = runtime_dependencies[0]
 
-        rustanalyzer_ls_dir = os.path.join(os.path.dirname(__file__), "static", "RustAnalyzer")
+        rustanalyzer_ls_dir = os.path.join(config.static_root, "static", "RustAnalyzer")
         rustanalyzer_executable_path = os.path.join(rustanalyzer_ls_dir, dependency["binaryName"])
         if not os.path.exists(rustanalyzer_ls_dir):
             os.makedirs(rustanalyzer_ls_dir)

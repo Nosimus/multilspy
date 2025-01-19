@@ -176,7 +176,7 @@ class OmniSharp(LanguageServer):
         assert "OmniSharp" in runtime_dependencies
         assert "RazorOmnisharp" in runtime_dependencies
 
-        omnisharp_ls_dir = os.path.join(os.path.dirname(__file__), "static", "OmniSharp")
+        omnisharp_ls_dir = os.path.join(config.static_root, "static", "OmniSharp")
         if not os.path.exists(omnisharp_ls_dir):
             os.makedirs(omnisharp_ls_dir)
             FileUtils.download_and_extract_archive(
@@ -186,7 +186,7 @@ class OmniSharp(LanguageServer):
         assert os.path.exists(omnisharp_executable_path)
         os.chmod(omnisharp_executable_path, stat.S_IEXEC)
 
-        razor_omnisharp_ls_dir = os.path.join(os.path.dirname(__file__), "static", "RazorOmnisharp")
+        razor_omnisharp_ls_dir = os.path.join(config.static_root, "static", "RazorOmnisharp")
         if not os.path.exists(razor_omnisharp_ls_dir):
             os.makedirs(razor_omnisharp_ls_dir)
             FileUtils.download_and_extract_archive(

@@ -1,9 +1,12 @@
 """
 Configuration parameters for Multilspy.
 """
-
+import os
+import pathlib
 from enum import Enum
 from dataclasses import dataclass
+from pathlib import PurePath
+
 
 class Language(str, Enum):
     """
@@ -27,6 +30,8 @@ class MultilspyConfig:
     Configuration parameters
     """
     code_language: Language
+    static_root: str = str(PurePath(os.path.abspath(os.path.dirname(__file__))))
+    language_server_dir: str = pathlib.Path.home()
     trace_lsp_communication: bool = False
 
     @classmethod
