@@ -136,7 +136,7 @@ class FileUtils:
         """
         try:
             tmp_files = []
-            tmp_file_name = str(PurePath(os.path.expanduser("~"), "multilspy_tmp", uuid.uuid4().hex))
+            tmp_file_name = str(PurePath("/tmp", "multilspy_tmp", uuid.uuid4().hex))
             tmp_files.append(tmp_file_name)
             os.makedirs(os.path.dirname(tmp_file_name), exist_ok=True)
             FileUtils.download_file(logger, url, tmp_file_name)
