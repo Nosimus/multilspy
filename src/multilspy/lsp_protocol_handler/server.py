@@ -32,6 +32,7 @@ import asyncio
 import dataclasses
 import datetime
 import json
+import logging
 import os
 from typing import Any, Dict, List, Optional, Union
 
@@ -208,6 +209,7 @@ class LanguageServerHandler:
         """
         child_proc_env = os.environ.copy()
         child_proc_env.update(self.process_launch_info.env)
+        self.logger.log(f"Launching server. Command: {self.process_launch_info.cmd}", logging.INFO)
         self.process = await asyncio.create_subprocess_shell(
             self.process_launch_info.cmd,
             stdout=asyncio.subprocess.PIPE,
