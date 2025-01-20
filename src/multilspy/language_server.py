@@ -468,6 +468,9 @@ class LanguageServer:
             )
 
         ret: List[multilspy_types.Location] = []
+        if response is None:
+            response = []
+
         assert isinstance(response, list)
         for item in response:
             assert isinstance(item, dict)
@@ -598,6 +601,10 @@ class LanguageServer:
         
         ret: List[multilspy_types.UnifiedSymbolInformation] = []
         l_tree = None
+
+        if response is None:
+            response = []
+
         assert isinstance(response, list)
         for item in response:
             assert isinstance(item, dict)
