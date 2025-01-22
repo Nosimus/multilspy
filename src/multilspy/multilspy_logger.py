@@ -25,7 +25,6 @@ class MultilspyLogger:
 
     def __init__(self) -> None:
         self.logger = logging.getLogger("multilspy")
-        self.logger.setLevel(logging.INFO)
 
     def log(self, debug_message: str, level: int, sanitized_error_message: str = "") -> None:
         """
